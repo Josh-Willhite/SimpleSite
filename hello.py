@@ -13,6 +13,11 @@ if __name__ == "__main__":
     except Exception as err:
         port = "5000"
     
-    print "Serving on port: %s" % port
+    try:
+        host = os.environ['FLASK_HOST']
+    except Exception as err:
+        host = '127.0.0.1'
 
-    app.run(port=int(port))
+    print "Serving on %s:%s" % (host, port)
+
+    app.run(host=host, port=int(port))
