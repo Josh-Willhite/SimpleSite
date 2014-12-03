@@ -9,8 +9,12 @@ def hello_Janrain(name=None):
         env  = os.environ['POC_ENV']
     except Exception as err:
         env  = 'unknown'
-    
-    return render_template('index.html', name=name, env=env) 
+    try:
+        release  = os.environ['POC_RELEASE']
+    except Exception as err:
+        release = 'unknown'
+
+    return render_template('index.html', name=name, env=env, release=release) 
 
 if __name__ == "__main__":
     try:
